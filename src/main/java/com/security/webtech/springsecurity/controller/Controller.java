@@ -6,6 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import java.util.Arrays;
+import java.util.List;
+
 @org.springframework.stereotype.Controller
 public class Controller {
     @Autowired
@@ -52,4 +55,16 @@ public class Controller {
         return "fragment-expression";
     }
 
+    //handler method for handling each iteration
+    @GetMapping(value = "/user")
+    public String user(Model model) {
+        List<User> userList = Arrays.asList(
+                new User(1L, "mahesh@gmail.com", "123456"),
+                new User(2L, "mahesh@gmail.com", "123456"),
+                new User(3L, "mahesh@gmail.com", "123456")
+        );
+        model.addAttribute("users",userList);
+
+        return "user";
+    }
 }
